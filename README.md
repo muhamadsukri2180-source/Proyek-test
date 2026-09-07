@@ -1,70 +1,96 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📋 Sistem Absensi Sederhana - Laravel
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplikasi **Sistem Absensi** sederhana berbasis **Laravel 10** yang digunakan untuk mencatat, menampilkan, mengubah, dan menghapus data absensi.
 
-## About Laravel
+## 📌 Deskripsi
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Project ini merupakan aplikasi CRUD (Create, Read, Update, Delete) sederhana menggunakan Laravel. Data absensi disimpan di database MySQL dan ditampilkan dalam bentuk tabel pada halaman utama.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Setiap data absensi memiliki informasi:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Nama**
+- **Kelas**
+- **Nomor**
 
-## Learning Laravel
+Aplikasi menggunakan konsep **MVC (Model-View-Controller)** Laravel:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- **Model** → mengatur interaksi dengan database.
+- **View** → menampilkan halaman aplikasi menggunakan Blade.
+- **Controller** → mengatur proses data dan request dari pengguna.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🛠️ Teknologi yang Digunakan
 
-## Laravel Sponsors
+| Teknologi | Keterangan |
+|---|---|
+| PHP | `^8.1` |
+| Laravel | `^10.10` |
+| MySQL | Database aplikasi |
+| Blade | Template engine Laravel |
+| Vite | Asset/build tool |
+| Eloquent ORM | Interaksi dengan database |
+| HTML & CSS | Tampilan antarmuka |
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+## ✨ Fitur
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### 1. Menampilkan Data Absensi
 
-## Contributing
+Data absensi yang tersimpan di database ditampilkan pada halaman utama dalam bentuk tabel.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 2. Tambah Data
 
-## Code of Conduct
+Pengguna dapat menambahkan data absensi melalui form dengan mengisi:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- Nama
+- Kelas
+- Nomor
 
-## Security Vulnerabilities
+### 3. Edit Data
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Data yang sudah tersimpan dapat dipilih melalui tombol **Edit**, kemudian diperbarui melalui form.
 
-## License
+### 4. Hapus Data
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-=======
-# Proyek-test
-proyek test saya
->>>>>>> 93a900a6686ffb9eba951e4258954a01f9e67ea4
+Data dapat dihapus menggunakan tombol **Hapus**. Aplikasi akan meminta konfirmasi sebelum data dihapus.
+
+### 5. Validasi Form
+
+Data wajib diisi dan setiap field dibatasi maksimal 255 karakter.
+
+---
+
+## 📁 Struktur Folder Utama
+
+```text
+Gabut/
+├── app/
+│   ├── Http/
+│   │   └── Controllers/
+│   │       └── AbsenController.php
+│   └── Models/
+│       └── Absen.php
+│
+├── database/
+│   ├── migrations/
+│   │   └── 2026_09_06_100127_create_absen_table.php
+│   └── seeders/
+│       └── DatabaseSeeder.php
+│
+├── resources/
+│   └── views/
+│       └── welcome.blade.php
+│
+├── routes/
+│   └── web.php
+│
+├── public/
+├── config/
+├── storage/
+├── tests/
+├── .env.example
+├── artisan
+├── composer.json
+└── README.md

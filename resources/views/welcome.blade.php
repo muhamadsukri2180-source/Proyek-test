@@ -206,28 +206,37 @@
                 <h2 class="cardname">Absensi</h2>
             </div>
 
+           @php
+                $editId = request('edit');
+                $itemEdit = $editId ? $absen->firstWhere('id', $editId) : null;
+            @endphp
+
             <div class="form-grid">
                 <form class="form" action="{{ $itemEdit ? route('welcome.update', $itemEdit->id) : route('welcome.store') }}" method="POST">
                     @csrf
-                    @if ($itemEdit)
-                    @method('PUT')
+                    @if($itemEdit)
+                        @method('PUT')
                     @endif
+
                     <div class="form-contain">
-                        <label for="nama">Mauskan Nama:</label>
+                        <label for="nama">Masukan Nama:</label>
                         <input type="text" name="nama" id="nama" placeholder="Masukan Nama:" value="{{ old('nama', $itemEdit->nama ?? '') }}" required>
                     </div>
+
                     <div class="form-contain">
-                        <label for="nama">Mauskan Kelas:</label>
-                        <input type="text" name="kelas" id="kelas" placeholder="Masukan Kelas:" value="{{ old('kelas', $itemEdit->kelas ?? '') }}"required>
+                        <label for="kelas">Masukan Kelas:</label>
+                        <input type="text" name="kelas" id="kelas" placeholder="Masukan Kelas:" value="{{ old('kelas', $itemEdit->kelas ?? '') }}" required>
                     </div>
+
                     <div class="form-contain">
-                        <label for="nama">Mauskan No:</label>
-                        <input type="text" name="no" id="no" placeholder="Masukan Nomor:" value="{{ old('no', $itemEdit->no ?? '') }}"required>
+                        <label for="no">Masukan Nomor:</label>
+                        <input type="text" name="no" id="no" placeholder="Masukan Nomor:" value="{{ old('no', $itemEdit->no ?? '') }}" required>
                     </div>
-                    <button type="submit">{{ $itemEdit ? 'Update' :'Kirim' }}</button>
-                    @if ($itemEdit)
-                    <a href="{{ route('welcome.index') }}" class="btn-batal">Batal</a>
+
+                    <button type="submit">{{ $itemEdit ? 'Update' : 'Kirim' }}</button>
                     
+                    @if($itemEdit)
+                        <a href="{{ route('welcome.index') }}" class="btn-batal">Batal</a>
                     @endif
                 </form>
             </div>
@@ -236,36 +245,37 @@
                 <table class="tabel">
                     <thead>
                         <tr>
-                            <th>nama</th>
+                            <th>Nama</th>
                             <th>Kelas</th>
-                            <th>No</th>
-                            <th>aski</th>
+                            <th>Nomor</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse($absen as $item)
-                        <tr class="tr1">
-                            <td>{{ $item->nama }}</td>
-                            <td>{{ $item->kelas }}</td>
-                            <td>{{ $item->no }}</td>
-                            <td><a href="{{ route('welcome.index', [$edit => $item->id]) }}" class="btn-edit">Edit</a></td>
-                            <form action="{{ route('welcome.destroy', $item->id) }}" method="POST" style="display:inline;">
+                            <tr class="tr1">
+                                <td>{{ $item->nama }}</td>
+                                <td>{{ $item->kelas }}</td>
+                                <td>{{ $item->no }}</td>
+                                <td>
+                                    <a href="{{ route('welcome.index', ['edit' => $item->id]) }}" class="btn-edit">Edit</a> | 
+                                    <form action="{{ route('welcome.destroy', $item->id) }}" method="POST" style="display:inline;">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
-                            </form>
-                        </tr>
+                                    </form>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr class="tr1">
+                                <td colspan="4">Belum ada data absensi.</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
-
             </div>
         </main>
     </div>
-    <table>
-        <h1>
-    
-        </h1>
-    </table>
 
     <footer class="footer">
         <h1 class="judul">Footer</h1>

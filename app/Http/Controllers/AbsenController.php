@@ -9,8 +9,8 @@ class AbsenController extends Controller
 {
     public function index()
     {
-    $absen = Absen::latest()->get();
-    return view('welcome', compact('absen'));
+        $absen = Absen::latest()->get();
+        return view('welcome', compact('absen'));
     }
 
     public function store(Request $request)
@@ -25,7 +25,7 @@ class AbsenController extends Controller
             'kelas' => $request->kelas,
             'no' => $request->no,
         ]);
-        return redirect()->route('welcome.index')->with('succes', 'data telah ditambahkan');
+        return redirect()->route('welcome.index')->with('succes', 'Data telah ditambahakan');
     }
     public function update(Request $request, Absen $absen)
     {
@@ -39,12 +39,11 @@ class AbsenController extends Controller
             'kelas' => $request->kelas,
             'no' => $request->no,
         ]);
-        return redirect()->route('welcome.index')->with('succes', 'data telah diubah');
+        return redirect()->route('welcome.index')->with('succes', 'Data telah diubah');
     }
-
     public function destroy(Absen $absen)
     {
         $absen->delete();
-        return redirect()->route('welcome.index')->with('succes', 'data telah dihapus');
+        return redirect()->route('welcome.index')->with('succes', 'Data telah dihapus');
     }
 }
